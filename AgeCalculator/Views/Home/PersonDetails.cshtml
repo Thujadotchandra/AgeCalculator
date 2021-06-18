@@ -1,0 +1,60 @@
+﻿@model AgeCalculator.Models.PersonDetails
+
+@{
+    ViewBag.Title = "Person Details";
+}
+<div class="col-md-12 pa-15">
+    Welcome <span class="boldLabel">@Model.FirstName</span>
+</div>
+
+<div class="pa-10">
+    <div class="col-md-10 pa-15">
+        Number of vowel(s) in the name (@Model.FirstName @Model.LastName) :<span class="boldLabel"> @Model.NoOfVowels </span>
+    </div>
+
+    <div class="col-md-10 pa-15">
+        Age :  <span class="boldLabel"> @Model.Age </span>
+    </div>
+
+    <div class="col-md-10 pa-15">
+        The remaining day(s) for the next birthday :   <span class="boldLabel"> @Model.RemainingDays </span> day(s)
+    </div>
+
+    <div class="col-md-12 pa-15">
+        <table class="table table-bordered table-condensed table-striped ">
+            <thead>
+                <tr>
+                    @foreach (System.Data.DataColumn col in Model.FourteenDaysDataTable.Columns)
+                    {
+                        <th>@col.Caption</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (System.Data.DataRow row in Model.FourteenDaysDataTable.Rows)
+                {
+                    <tr>
+                        @foreach (var cell in row.ItemArray)
+                        {
+                            <td>
+                                <a href="https://www.historynet.com/today-in-history/@cell.ToString()" target="_blank">@cell.ToString()</a>
+                            </td>
+                        }
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+
+    </script>
+
+}
+<style>
+</style>
